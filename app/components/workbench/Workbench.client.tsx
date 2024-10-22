@@ -53,6 +53,7 @@ const workbenchVariants = {
 } satisfies Variants;
 
 const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'http://13.250.113.64:3000';
 
 export const Workbench = memo(({ chatStarted, isStreaming }: WorkspaceProps) => {
   renderLogger.trace('Workbench');
@@ -72,26 +73,30 @@ export const Workbench = memo(({ chatStarted, isStreaming }: WorkspaceProps) => 
   useEffect(() => {
     (async () => {
       if (!isStreaming && files) {
-        console.log('Generate completed!');
+        try {
+          console.log('Generate completed!');
 
-        const downdloadBucketRes = await fetch(`${BASE_URL}/cloud/s3/download-bucket`, {
-          method: 'POST',
-        });
-
-        const downdloadBucketData: { status: string; message: string; error: null | string } =
-          await downdloadBucketRes.json();
-
-        if (downdloadBucketData.status === 'success') {
-          const buildRes = await fetch(`${BASE_URL}/cloud/build`, {
+          const downdloadBucketRes = await fetch(`${BASE_URL}/cloud/download-bucket`, {
             method: 'POST',
           });
-          const buildData: { status: string; message: string; error: null | string } = await buildRes.json();
 
-          if (buildData.status === 'success') {
-            const contractFilesRes = await fetch(`${BASE_URL}/cloud/get-data`);
-            const contractFilesData: { status: string; message: string; error: null | string } =
-              await contractFilesRes.json();
+          const downdloadBucketData: { status: string } = await downdloadBucketRes.json();
+
+          if (downdloadBucketData.status === 'success') {
+            const buildRes = await fetch(`${BASE_URL}/cloud/build`, {
+              method: 'POST',
+            });
+
+            const buildData: {
+              data: {
+                [key: string]: string;
+              };
+            } = await buildRes.json();
+
+            console.log(buildData.data);
           }
+        } catch (error) {
+          console.log('🚀 ~ error:', error);
         }
       }
     })();

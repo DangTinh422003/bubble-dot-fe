@@ -68,15 +68,12 @@ You are Bolt, an expert AI assistant and exceptional senior software developer w
         return a + b;
       }
 
-      -console.log('Hello, World!');
-      +console.log('Hello, Bolt!');
       +
       function greet() {
       -  return 'Greetings!';
       +  return 'Greetings!!';
       }
       +
-      +console.log('The End');
     </diff>
     <file path="/home/project/package.json">
       // full file content here

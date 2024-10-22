@@ -64,7 +64,6 @@ function log(level: DebugLevel, scope: string | undefined, messages: any[]) {
   }, '');
 
   if (!supportsColor) {
-    console.log(`[${level.toUpperCase()}]`, allMessages);
 
     return;
   }
@@ -81,7 +80,6 @@ function log(level: DebugLevel, scope: string | undefined, messages: any[]) {
     styles.push('', scopeStyles);
   }
 
-  console.log(`%c${level.toUpperCase()}${scope ? `%c %c${scope}` : ''}`, ...styles, allMessages);
 }
 
 function getLabelStyles(color: string, textColor: string) {

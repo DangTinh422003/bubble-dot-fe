@@ -50,7 +50,6 @@ async function enhancerAction({ context, request }: ActionFunctionArgs) {
 
     return new StreamingTextResponse(transformedStream);
   } catch (error) {
-    console.log(error);
 
     throw new Response(null, {
       status: 500,
