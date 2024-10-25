@@ -27,13 +27,7 @@ interface BaseChatProps {
   enhancePrompt?: () => void;
 }
 
-const EXAMPLE_PROMPTS = [
-  { text: 'Create a calculator in JavaScript' },
-  { text: 'Build a portfolio site with Next.js' },
-  { text: 'Set up a REST API using Nest.js' },
-  { text: 'Write a MongoDB query to find users by age' },
-  { text: 'How do I deploy a Node.js app to AWS?' },
-];
+const EXAMPLE_PROMPTS = [];
 
 const TEXTAREA_MIN_HEIGHT = 76;
 
