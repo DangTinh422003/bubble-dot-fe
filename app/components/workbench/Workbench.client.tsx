@@ -52,7 +52,7 @@ const workbenchVariants = {
   },
 } satisfies Variants;
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://47.129.4.130:3000';
 
 export const Workbench = memo(({ chatStarted, isStreaming }: WorkspaceProps) => {
   renderLogger.trace('Workbench');
